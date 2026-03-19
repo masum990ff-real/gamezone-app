@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width,
+    initial-scale=1.0,
+    maximum-scale=1.0,
+    user-scalable=no" />
+  <meta name="theme-color" content="#020208" />
+  <meta name="apple-mobile-web-app-capable"
+    content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <title>Home — GAMEZONE</title>
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+  <div class="cyber-grid"></div>
+
+  <!-- ── Page loader ────────────────────────── -->
+  <div class="page-loader" id="page-loader">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="page-container">
+
+    <!-- ── Top bar ──────────────────────────── -->
+    <div class="home-top-bar">
+      <div class="home-brand">
+        <div class="home-brand-name">
+          GAMEZONE
+        </div>
+        <div class="home-brand-greeting"
+          id="greeting">
+          Hey, Player
+        </div>
+      </div>
+      <div class="coin-chip"
+        id="coin-chip"
+        onclick="location.href='wallet.html'">
+        🪙 0
+      </div>
+    </div>
+
+    <!-- ── Banner section ───────────────────── -->
+    <div class="banner-section">
+      <div class="section-heading">
+        FEATURED
+      </div>
+      <div class="banner-slider-wrap">
+        <div class="banner-slider"
+          id="banner-slider">
+          <!-- Banners injected by JS -->
+          <div class="banner-slide"
+            style="background:
+              linear-gradient(135deg,
+              #0C0C2A, #101035);">
+            <div class="banner-content">
+              <div class="banner-title">
+                Loading...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Dot indicators -->
+      <div class="banner-dots"
+        id="banner-dots">
+      </div>
+    </div>
+
+    <!-- ── Categories section ───────────────── -->
+    <div class="section"
+      style="padding-top: var(--xl);">
+      <div class="section-heading">
+        CATEGORIES
+      </div>
+      <div class="categories-grid"
+        id="categories-grid">
+        <!-- Skeletons while loading -->
+        <div class="category-skeleton"></div>
+        <div class="category-skeleton"></div>
+        <div class="category-skeleton"></div>
+        <div class="category-skeleton"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Bottom nav ───────────────────────────── -->
+  <nav class="bottom-nav">
+    <a class="nav-item active"
+      data-page="home"
+      href="home.html">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a class="nav-item"
+      data-page="matches"
+      href="matches.html">
+      <span class="nav-icon">⚔️</span>
+      <span class="nav-label">Matches</span>
+    </a>
+    <a class="nav-item"
+      data-page="wallet"
+      href="wallet.html">
+      <span class="nav-icon">💰</span>
+      <span class="nav-label">Wallet</span>
+    </a>
+    <a class="nav-item"
+      data-page="refer"
+      href="refer.html">
+      <span class="nav-icon">🎁</span>
+      <span class="nav-label">Refer</span>
+    </a>
+    <a class="nav-item"
+      data-page="profile"
+      href="profile.html">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+
+  <!-- ── Toast ──────────────────────────────── -->
+  <div id="toast-container"
+    class="toast-container">
+  </div>
+
+  <script type="module"
+    src="js/home.js">
+  </script>
+
+</body>
+</html>

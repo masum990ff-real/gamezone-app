@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width,
+    initial-scale=1.0,
+    maximum-scale=1.0,
+    user-scalable=no" />
+  <meta name="theme-color" content="#020208" />
+  <meta name="apple-mobile-web-app-capable"
+    content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <title>Sign Up — GAMEZONE</title>
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+  <div class="cyber-grid"></div>
+  <div class="radial-glow"></div>
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Back button -->
+  <a href="index.html" class="auth-back">
+    ‹ BACK
+  </a>
+
+  <div class="auth-page">
+
+    <!-- Header -->
+    <div class="auth-header">
+      <div class="auth-icon">⚔️</div>
+      <div class="auth-title">
+        CREATE ACCOUNT
+      </div>
+      <div class="auth-subtitle">
+        Join the battlefield
+      </div>
+    </div>
+
+    <!-- Form card -->
+    <div class="auth-card">
+
+      <!-- First name -->
+      <div class="input-wrap">
+        <label class="input-label">
+          First Name
+        </label>
+        <input
+          type="text"
+          id="first-name"
+          class="input-field"
+          placeholder="Enter first name"
+          autocomplete="given-name"
+          maxlength="30" />
+      </div>
+
+      <!-- Last name -->
+      <div class="input-wrap">
+        <label class="input-label">
+          Last Name
+        </label>
+        <input
+          type="text"
+          id="last-name"
+          class="input-field"
+          placeholder="Enter last name"
+          autocomplete="family-name"
+          maxlength="30" />
+      </div>
+
+      <!-- Email -->
+      <div class="input-wrap">
+        <label class="input-label">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          class="input-field"
+          placeholder="Enter email address"
+          autocomplete="email"
+          inputmode="email" />
+      </div>
+
+      <!-- Password -->
+      <div class="input-wrap">
+        <label class="input-label">
+          Password
+        </label>
+        <div class="input-icon-wrap">
+          <input
+            type="password"
+            id="password"
+            class="input-field"
+            placeholder="Min 6 characters"
+            autocomplete="new-password"
+            maxlength="64" />
+          <span class="input-icon"
+            id="toggle-pass"
+            onclick="togglePassword(
+              'password','toggle-pass')">
+            👁️
+          </span>
+        </div>
+        <!-- Password strength -->
+        <div class="password-strength"
+          id="strength-wrap"
+          style="display:none">
+          <div class="strength-bars">
+            <div class="strength-bar"
+              id="bar1"></div>
+            <div class="strength-bar"
+              id="bar2"></div>
+            <div class="strength-bar"
+              id="bar3"></div>
+          </div>
+          <div class="strength-label"
+            id="strength-label">
+          </div>
+        </div>
+      </div>
+
+      <!-- Confirm password -->
+      <div class="input-wrap">
+        <label class="input-label">
+          Confirm Password
+        </label>
+        <div class="input-icon-wrap">
+          <input
+            type="password"
+            id="confirm-password"
+            class="input-field"
+            placeholder="Re-enter password"
+            autocomplete="new-password"
+            maxlength="64" />
+          <span class="input-icon"
+            id="toggle-confirm"
+            onclick="togglePassword(
+              'confirm-password',
+              'toggle-confirm')">
+            👁️
+          </span>
+        </div>
+        <div class="match-indicator"
+          id="match-indicator">
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <button
+        class="btn-primary"
+        id="signup-btn"
+        onclick="handleSignup()">
+        CREATE ACCOUNT
+      </button>
+
+    </div>
+
+    <!-- Switch to login -->
+    <div class="auth-switch">
+      Already have an account?
+      <a href="login.html">LOG IN</a>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast-container"
+    class="toast-container">
+  </div>
+
+  <script type="module"
+    src="js/signup.js">
+  </script>
+
+</body>
+</html>

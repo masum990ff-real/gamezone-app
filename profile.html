@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width,
+    initial-scale=1.0,
+    maximum-scale=1.0,
+    user-scalable=no" />
+  <meta name="theme-color" content="#020208" />
+  <meta name="apple-mobile-web-app-capable"
+    content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <title>Profile — GAMEZONE</title>
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body>
+
+  <div class="cyber-grid"></div>
+
+  <!-- Page loader -->
+  <div class="page-loader" id="page-loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Policy modal -->
+  <div class="modal-overlay"
+    id="policy-modal"
+    onclick="closePolicyModal(event)">
+    <div class="modal-box">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title"
+        id="policy-title">
+      </div>
+      <div class="policy-content"
+        id="policy-content">
+      </div>
+      <div style="height:16px"></div>
+      <button class="btn-secondary"
+        onclick="closePolicyModal()">
+        CLOSE
+      </button>
+    </div>
+  </div>
+
+  <div class="page-container">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+      <div>
+        <div class="top-bar-title">
+          PROFILE
+        </div>
+      </div>
+      <div class="coin-chip"
+        id="coin-chip"
+        onclick="location.href=
+          'wallet.html'">
+        🪙 0
+      </div>
+    </div>
+
+    <!-- Profile header -->
+    <div class="profile-header">
+      <div class="avatar-wrap">
+        <div class="avatar-glow"></div>
+        <div class="avatar-ring"></div>
+        <div class="avatar-circle"
+          id="avatar-letter">
+          G
+        </div>
+      </div>
+      <div class="profile-name"
+        id="profile-name">
+        Loading...
+      </div>
+      <div class="profile-email"
+        id="profile-email">
+      </div>
+      <div class="profile-badge">
+        ⚔️ PLAYER
+      </div>
+    </div>
+
+    <!-- Stats card -->
+    <div class="profile-stats-card
+      gradient-border">
+      <div class="stats-grid">
+        <div class="stat-col">
+          <span class="stat-icon">🎮</span>
+          <div class="stat-value"
+            id="stat-matches">0</div>
+          <div class="stat-label">
+            MATCHES
+          </div>
+        </div>
+        <div class="stat-col">
+          <span class="stat-icon">🏆</span>
+          <div class="stat-value"
+            id="stat-wins">0</div>
+          <div class="stat-label">
+            WINS
+          </div>
+        </div>
+        <div class="stat-col">
+          <span class="stat-icon">🎯</span>
+          <div class="stat-value"
+            id="stat-kills">0</div>
+          <div class="stat-label">
+            KILLS
+          </div>
+        </div>
+        <div class="stat-col">
+          <span class="stat-icon">🪙</span>
+          <div class="stat-value"
+            id="stat-earned">0</div>
+          <div class="stat-label">
+            EARNED
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Balances card -->
+    <div class="profile-balances-card">
+      <div class="profile-balance-row">
+        <div class="profile-balance-left">
+          <span class="profile-balance-icon">
+            💳
+          </span>
+          <span class="profile-balance-name
+            deposit">
+            Deposit Coins
+          </span>
+        </div>
+        <div class="profile-balance-amount"
+          id="bal-deposit">
+          🪙 0
+        </div>
+      </div>
+      <div class="profile-balance-row">
+        <div class="profile-balance-left">
+          <span class="profile-balance-icon">
+            🏆
+          </span>
+          <span class="profile-balance-name
+            win">
+            Win Coins
+          </span>
+        </div>
+        <div class="profile-balance-amount"
+          id="bal-win">
+          🪙 0
+        </div>
+      </div>
+      <div class="profile-balance-row">
+        <div class="profile-balance-left">
+          <span class="profile-balance-icon">
+            🎁
+          </span>
+          <span class="profile-balance-name
+            bonus">
+            Bonus Coins
+          </span>
+        </div>
+        <div class="profile-balance-amount"
+          id="bal-bonus">
+          🪙 0
+        </div>
+      </div>
+    </div>
+
+    <!-- Referral code card -->
+    <div class="profile-referral-card">
+      <div class="profile-referral-row">
+        <div class="profile-referral-info">
+          <div class="profile-referral-label">
+            REFERRAL CODE
+          </div>
+          <div class="profile-referral-code"
+            id="profile-ref-code">
+            ——————
+          </div>
+        </div>
+        <div class="profile-referral-btns">
+          <button
+            class="profile-ref-btn"
+            onclick="copyProfileCode()"
+            title="Copy">
+            📋
+          </button>
+          <button
+            class="profile-ref-btn"
+            onclick="shareProfileCode()"
+            title="Share">
+            📤
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action rows -->
+    <div class="profile-actions-card">
+      <div class="action-row"
+        onclick="openAction('support')">
+        <div class="action-row-icon
+          action-icon-support">
+          💬
+        </div>
+        <div class="action-row-label">
+          Support
+        </div>
+        <div class="action-row-chevron">
+          ›
+        </div>
+      </div>
+      <div class="action-row"
+        onclick="openAction('privacy')">
+        <div class="action-row-icon
+          action-icon-privacy">
+          🔒
+        </div>
+        <div class="action-row-label">
+          Privacy Policy
+        </div>
+        <div class="action-row-chevron">
+          ›
+        </div>
+      </div>
+      <div class="action-row"
+        onclick="openAction('fairplay')">
+        <div class="action-row-icon
+          action-icon-fairplay">
+          ⚖️
+        </div>
+        <div class="action-row-label">
+          Fair Play Policy
+        </div>
+        <div class="action-row-chevron">
+          ›
+        </div>
+      </div>
+      <div class="action-row"
+        onclick="openAction('whatsapp')">
+        <div class="action-row-icon
+          action-icon-whatsapp">
+          💚
+        </div>
+        <div class="action-row-label">
+          WhatsApp Group
+        </div>
+        <div class="action-row-chevron">
+          ›
+        </div>
+      </div>
+    </div>
+
+    <!-- Logout -->
+    <div class="logout-row">
+      <div class="action-row"
+        onclick="handleLogout()">
+        <div class="action-row-icon"
+          style="background:rgba(255,23,68,0.1);
+            border:1px solid
+            rgba(255,23,68,0.2);">
+          🚪
+        </div>
+        <div class="action-row-label">
+          Log Out
+        </div>
+        <div class="action-row-chevron">
+          ›
+        </div>
+      </div>
+    </div>
+
+    <div style="height:8px"></div>
+
+    <!-- App version -->
+    <div style="
+      text-align:center;
+      font-family:var(--font-ghost);
+      font-size:11px;
+      color:var(--twilight);
+      letter-spacing:1px;
+      padding-bottom:8px;">
+      GAMEZONE v1.0 •
+      <span id="platform-tag">Web</span>
+    </div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav">
+    <a class="nav-item"
+      data-page="home"
+      href="home.html">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a class="nav-item"
+      data-page="matches"
+      href="matches.html">
+      <span class="nav-icon">⚔️</span>
+      <span class="nav-label">Matches</span>
+    </a>
+    <a class="nav-item"
+      data-page="wallet"
+      href="wallet.html">
+      <span class="nav-icon">💰</span>
+      <span class="nav-label">Wallet</span>
+    </a>
+    <a class="nav-item"
+      data-page="refer"
+      href="refer.html">
+      <span class="nav-icon">🎁</span>
+      <span class="nav-label">Refer</span>
+    </a>
+    <a class="nav-item active"
+      data-page="profile"
+      href="profile.html">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+
+  <!-- Toast -->
+  <div id="toast-container"
+    class="toast-container">
+  </div>
+
+  <script type="module"
+    src="js/profile.js">
+  </script>
+
+</body>
+</html>

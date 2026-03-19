@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width,
+    initial-scale=1.0,
+    maximum-scale=1.0,
+    user-scalable=no" />
+  <meta name="theme-color" content="#020208" />
+  <meta name="apple-mobile-web-app-capable"
+    content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <title>Matches — GAMEZONE</title>
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/matches.css" />
+</head>
+<body>
+
+  <div class="cyber-grid"></div>
+
+  <!-- Page loader -->
+  <div class="page-loader" id="page-loader">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="page-container">
+
+    <!-- Top bar -->
+    <div class="matches-top-bar">
+      <div class="matches-top-bar-inner">
+        <a href="home.html"
+          class="back-btn">‹ BACK</a>
+        <div class="matches-page-title"
+          id="page-title">
+          MATCHES
+        </div>
+        <div class="coin-chip"
+          id="coin-chip"
+          onclick="
+            location.href='wallet.html'">
+          🪙 0
+        </div>
+      </div>
+
+      <!-- Tab bar -->
+      <div class="tab-bar">
+        <div class="tab-item active"
+          data-tab="upcoming"
+          onclick="switchTab('upcoming')">
+          ⏳ UPCOMING
+        </div>
+        <div class="tab-item"
+          data-tab="live"
+          onclick="switchTab('live')">
+          🔴 LIVE
+        </div>
+        <div class="tab-item"
+          data-tab="completed"
+          onclick="switchTab('completed')">
+          ✅ RESULTS
+        </div>
+      </div>
+    </div>
+
+    <!-- Match lists -->
+    <div id="upcoming-list"
+      class="matches-list">
+    </div>
+    <div id="live-list"
+      class="matches-list"
+      style="display:none">
+    </div>
+    <div id="completed-list"
+      class="matches-list"
+      style="display:none">
+    </div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav">
+    <a class="nav-item"
+      data-page="home"
+      href="home.html">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a class="nav-item active"
+      data-page="matches"
+      href="matches.html">
+      <span class="nav-icon">⚔️</span>
+      <span class="nav-label">Matches</span>
+    </a>
+    <a class="nav-item"
+      data-page="wallet"
+      href="wallet.html">
+      <span class="nav-icon">💰</span>
+      <span class="nav-label">Wallet</span>
+    </a>
+    <a class="nav-item"
+      data-page="refer"
+      href="refer.html">
+      <span class="nav-icon">🎁</span>
+      <span class="nav-label">Refer</span>
+    </a>
+    <a class="nav-item"
+      data-page="profile"
+      href="profile.html">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+
+  <!-- ══ JOIN SHEET ══════════════════════════ -->
+  <div class="sheet-overlay"
+    id="join-sheet-overlay"
+    onclick="closeJoinSheet()">
+  </div>
+  <div class="bottom-sheet"
+    id="join-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">
+      JOIN MATCH ⚔️
+    </div>
+
+    <!-- Match info -->
+    <div class="join-match-info">
+      <img class="join-match-thumb"
+        id="join-thumb" src="" alt="" />
+      <div class="join-match-details">
+        <div class="join-match-name"
+          id="join-title">
+        </div>
+        <div class="join-match-entry"
+          id="join-entry">
+        </div>
+      </div>
+    </div>
+
+    <!-- Balance check -->
+    <div class="balance-check"
+      id="balance-check">
+      <div>
+        <div class="balance-check-label">
+          YOUR BALANCE
+        </div>
+        <div style="
+          font-family:var(--font-ghost);
+          font-size:12px;
+          color:var(--twilight);
+          margin-top:2px;"
+          id="balance-breakdown">
+        </div>
+      </div>
+      <div class="balance-check-amount"
+        id="balance-amount">
+        🪙 0
+      </div>
+    </div>
+
+    <!-- Player count (for duo/squad) -->
+    <div id="player-count-wrap"
+      style="display:none">
+      <div class="section-heading"
+        style="margin-bottom:10px">
+        TEAM SIZE
+      </div>
+      <div class="player-count-chips"
+        id="player-chips">
+      </div>
+    </div>
+
+    <!-- Username inputs -->
+    <div class="username-inputs"
+      id="username-inputs">
+    </div>
+
+    <!-- Total fee -->
+    <div class="join-total">
+      <div class="join-total-label">
+        ENTRY FEE
+      </div>
+      <div class="join-total-amount"
+        id="join-total-amount">
+        🪙 0
+      </div>
+    </div>
+
+    <!-- Confirm button -->
+    <button class="btn-primary"
+      id="confirm-join-btn"
+      onclick="confirmJoin()">
+      CONFIRM JOIN ⚔️
+    </button>
+
+  </div>
+
+  <!-- ══ ROOM MODAL ══════════════════════════ -->
+  <div class="modal-overlay"
+    id="room-modal"
+    onclick="closeRoomModal(event)">
+    <div class="modal-box">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title">
+        🔑 ROOM DETAILS
+      </div>
+
+      <div class="room-detail-row">
+        <div>
+          <div class="room-detail-label">
+            ROOM ID
+          </div>
+          <div class="room-detail-value"
+            id="room-id-val">
+          </div>
+        </div>
+        <button class="copy-btn"
+          onclick="copyRoomId()">
+          📋
+        </button>
+      </div>
+
+      <div class="room-detail-row">
+        <div>
+          <div class="room-detail-label">
+            PASSWORD
+          </div>
+          <div class="room-detail-value"
+            id="room-pass-val">
+          </div>
+        </div>
+        <button class="copy-btn"
+          onclick="copyRoomPass()">
+          📋
+        </button>
+      </div>
+
+      <div style="
+        font-family:var(--font-ghost);
+        font-size:12px;
+        color:var(--twilight);
+        text-align:center;
+        letter-spacing:1px;
+        margin-top:8px;
+        line-height:1.6;">
+        Use these details to join the
+        match room
+      </div>
+
+      <div style="height:16px"></div>
+      <button class="btn-secondary"
+        onclick="closeRoomModal()">
+        CLOSE
+      </button>
+    </div>
+  </div>
+
+  <!-- ══ RESULTS MODAL ═══════════════════════ -->
+  <div class="modal-overlay"
+    id="results-modal"
+    onclick="closeResultsModal(event)">
+    <div class="modal-box">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title">
+        🏆 RESULTS
+      </div>
+      <div id="results-match-name"
+        style="
+          font-family:var(--font-ghost);
+          font-size:13px;
+          color:var(--stardust);
+          text-align:center;
+          letter-spacing:1px;
+          margin-bottom:16px;">
+      </div>
+      <div style="overflow-x:auto">
+        <table class="results-table"
+          id="results-table">
+        </table>
+      </div>
+      <div style="height:16px"></div>
+      <button class="btn-secondary"
+        onclick="closeResultsModal()">
+        CLOSE
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast-container"
+    class="toast-container">
+  </div>
+
+  <script type="module"
+    src="js/matches.js">
+  </script>
+
+</body>
+</html>

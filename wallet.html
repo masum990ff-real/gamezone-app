@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width,
+    initial-scale=1.0,
+    maximum-scale=1.0,
+    user-scalable=no" />
+  <meta name="theme-color" content="#020208" />
+  <meta name="apple-mobile-web-app-capable"
+    content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <title>Wallet — GAMEZONE</title>
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/wallet.css" />
+</head>
+<body>
+
+  <div class="cyber-grid"></div>
+
+  <!-- Page loader -->
+  <div class="page-loader" id="page-loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Coin animation container -->
+  <div id="coin-anim-container"
+    class="coin-anim-container">
+  </div>
+
+  <div class="page-container">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+      <div>
+        <div class="top-bar-title">
+          WALLET
+        </div>
+        <div class="top-bar-subtitle">
+          Your coins
+        </div>
+      </div>
+    </div>
+
+    <!-- Total balance card -->
+    <div class="total-balance-card
+      gradient-border"
+      style="margin-top:var(--lg)">
+      <div class="balance-label">
+        TOTAL COINS
+      </div>
+      <div class="balance-amount-wrap">
+        <div class="balance-amount"
+          id="total-coins">
+          🪙 0
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 balances card -->
+    <div class="balances-card">
+      <div class="balances-grid">
+
+        <!-- Deposit coins -->
+        <div class="balance-col
+          balance-col-deposit">
+          <div class="balance-col-icon">
+            💳
+          </div>
+          <div class="balance-col-label">
+            DEPOSIT
+          </div>
+          <div class="balance-col-amount"
+            id="deposit-coins">
+            0
+          </div>
+          <button
+            class="balance-col-btn
+              deposit-btn"
+            onclick="openDepositSheet()">
+            ADD
+          </button>
+        </div>
+
+        <!-- Win coins -->
+        <div class="balance-col
+          balance-col-win">
+          <div class="balance-col-icon">
+            🏆
+          </div>
+          <div class="balance-col-label">
+            WINNINGS
+          </div>
+          <div class="balance-col-amount"
+            id="win-coins">
+            0
+          </div>
+          <button
+            class="balance-col-btn
+              withdraw-btn"
+            onclick="openWithdrawSheet()">
+            CASH
+          </button>
+        </div>
+
+        <!-- Bonus coins -->
+        <div class="balance-col
+          balance-col-bonus">
+          <div class="balance-col-icon">
+            🎁
+          </div>
+          <div class="balance-col-label">
+            BONUS
+          </div>
+          <div class="balance-col-amount"
+            id="bonus-coins">
+            0
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Transaction history -->
+    <div class="tx-section">
+      <div class="section-heading">
+        TRANSACTIONS
+      </div>
+      <div class="tx-list"
+        id="tx-list">
+        <div class="empty-state">
+          <div class="empty-state-icon">
+            📋
+          </div>
+          <div class="empty-state-title">
+            No transactions yet
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav">
+    <a class="nav-item"
+      data-page="home"
+      href="home.html">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a class="nav-item"
+      data-page="matches"
+      href="matches.html">
+      <span class="nav-icon">⚔️</span>
+      <span class="nav-label">Matches</span>
+    </a>
+    <a class="nav-item active"
+      data-page="wallet"
+      href="wallet.html">
+      <span class="nav-icon">💰</span>
+      <span class="nav-label">Wallet</span>
+    </a>
+    <a class="nav-item"
+      data-page="refer"
+      href="refer.html">
+      <span class="nav-icon">🎁</span>
+      <span class="nav-label">Refer</span>
+    </a>
+    <a class="nav-item"
+      data-page="profile"
+      href="profile.html">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+
+  <!-- ══ DEPOSIT SHEET ═══════════════════════ -->
+  <div class="sheet-overlay"
+    id="deposit-sheet-overlay"
+    onclick="closeDepositSheet()">
+  </div>
+  <div class="bottom-sheet"
+    id="deposit-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">
+      ADD COINS 💳
+    </div>
+
+    <!-- Step indicator -->
+    <div class="step-indicator"
+      id="deposit-steps">
+      <div class="step-dot active"
+        id="step1-dot">1</div>
+      <div class="step-line"
+        id="step1-line"></div>
+      <div class="step-dot"
+        id="step2-dot">2</div>
+      <div class="step-line"
+        id="step2-line"></div>
+      <div class="step-dot"
+        id="step3-dot">3</div>
+    </div>
+
+    <!-- Step 1: Amount + App -->
+    <div class="deposit-step active"
+      id="deposit-step-1">
+
+      <div class="section-heading">
+        SELECT AMOUNT
+      </div>
+      <div class="amount-grid"
+        id="amount-grid">
+      </div>
+
+      <div class="section-heading">
+        PAYMENT APP
+      </div>
+      <div class="app-chips"
+        id="app-chips">
+        <div class="app-chip"
+          data-app="GPay"
+          onclick="selectApp('GPay')">
+          GPay
+        </div>
+        <div class="app-chip"
+          data-app="PhonePe"
+          onclick="selectApp('PhonePe')">
+          PhonePe
+        </div>
+        <div class="app-chip"
+          data-app="Paytm"
+          onclick="selectApp('Paytm')">
+          Paytm
+        </div>
+        <div class="app-chip"
+          data-app="Amazon"
+          onclick="selectApp('Amazon')">
+          Amazon
+        </div>
+        <div class="app-chip"
+          data-app="BHIM"
+          onclick="selectApp('BHIM')">
+          BHIM
+        </div>
+        <div class="app-chip"
+          data-app="Other"
+          onclick="selectApp('Other')">
+          Other
+        </div>
+      </div>
+
+      <button class="btn-primary"
+        id="step1-next"
+        onclick="goToStep2()"
+        disabled>
+        NEXT →
+      </button>
+
+    </div>
+
+    <!-- Step 2: QR Code -->
+    <div class="deposit-step"
+      id="deposit-step-2">
+
+      <div class="qr-container">
+        <div class="qr-image-wrap">
+          <img id="qr-image"
+            src="" alt="QR Code" />
+        </div>
+        <div class="qr-app-name"
+          id="qr-app-name">
+        </div>
+        <div style="
+          font-family:var(--font-ghost);
+          font-size:13px;
+          color:var(--stardust);
+          letter-spacing:1px;">
+          Pay exactly:
+        </div>
+        <div class="qr-amount"
+          id="qr-amount">
+        </div>
+        <div class="qr-warning">
+          ⚠ Do NOT change the amount
+        </div>
+      </div>
+
+      <!-- Countdown timer -->
+      <div class="deposit-timer normal"
+        id="deposit-timer">
+        10:00
+      </div>
+
+      <div style="height:16px"></div>
+
+      <button class="btn-primary"
+        style="background:
+          var(--win-grad);
+          box-shadow:var(--glow-green);"
+        onclick="goToStep3()">
+        ✓ I HAVE PAID
+      </button>
+
+      <div style="height:10px"></div>
+
+      <button class="btn-secondary"
+        onclick="goBackToStep1()">
+        ← CHANGE AMOUNT
+      </button>
+
+    </div>
+
+    <!-- Step 3: UTR -->
+    <div class="deposit-step"
+      id="deposit-step-3">
+
+      <div style="
+        text-align:center;
+        margin-bottom:20px;">
+        <div style="font-size:40px;
+          margin-bottom:10px;">🧾</div>
+        <div style="
+          font-family:var(--font-ghost);
+          font-size:15px;
+          font-weight:700;
+          color:var(--neon-cyan);
+          letter-spacing:2px;
+          margin-bottom:6px;">
+          ENTER UTR NUMBER
+        </div>
+        <div style="
+          font-family:var(--font-ghost);
+          font-size:12px;
+          color:var(--twilight);
+          letter-spacing:1px;
+          line-height:1.6;">
+          Find UTR/Reference number in
+          your payment app transaction
+          history
+        </div>
+      </div>
+
+      <div class="input-wrap">
+        <label class="input-label">
+          UTR / Reference Number
+        </label>
+        <input
+          type="text"
+          id="utr-input"
+          class="input-field utr-input"
+          placeholder="Enter UTR number"
+          maxlength="22"
+          oninput="onUTRInput(this)" />
+      </div>
+
+      <div style="
+        text-align:center;
+        margin:12px 0;
+        font-family:var(--font-ghost);
+        font-size:13px;
+        color:var(--coin-gold);
+        letter-spacing:1px;">
+        <span id="step3-reminder"></span>
+      </div>
+
+      <!-- Loading state -->
+      <div class="loading-pulse hidden"
+        id="utr-loading">
+        <div class="spinner"></div>
+        <div class="loading-pulse-text">
+          Waiting for verification...
+        </div>
+      </div>
+
+      <button class="btn-primary"
+        id="submit-utr-btn"
+        onclick="submitUTR()"
+        disabled>
+        SUBMIT ✓
+      </button>
+
+      <div style="height:10px"></div>
+
+      <button class="btn-secondary"
+        id="utr-back-btn"
+        onclick="goBackToStep2()">
+        ← GO BACK
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ══ WITHDRAW SHEET ══════════════════════ -->
+  <div class="sheet-overlay"
+    id="withdraw-sheet-overlay"
+    onclick="closeWithdrawSheet()">
+  </div>
+  <div class="bottom-sheet"
+    id="withdraw-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">
+      WITHDRAW 💸
+    </div>
+
+    <!-- Warning -->
+    <div style="
+      background:rgba(255,171,0,0.08);
+      border:1px solid
+        rgba(255,171,0,0.3);
+      border-radius:var(--r-md);
+      padding:12px 16px;
+      margin-bottom:16px;
+      font-family:var(--font-ghost);
+      font-size:12px;
+      color:var(--warn-amber);
+      letter-spacing:0.5px;
+      line-height:1.6;">
+      ⚠️ Only <strong>Win Coins</strong>
+      can be withdrawn.<br />
+      Bonus and Deposit coins are
+      non-withdrawable.
+    </div>
+
+    <!-- Holder name -->
+    <div class="input-wrap">
+      <label class="input-label">
+        Account Holder Name
+      </label>
+      <input
+        type="text"
+        id="holder-name"
+        class="input-field"
+        placeholder="Full name on UPI"
+        maxlength="50" />
+    </div>
+
+    <!-- UPI ID -->
+    <div class="input-wrap">
+      <label class="input-label">
+        UPI ID
+      </label>
+      <input
+        type="text"
+        id="upi-id"
+        class="input-field"
+        placeholder="yourname@upi"
+        maxlength="50"
+        inputmode="email" />
+    </div>
+
+    <!-- Amount -->
+    <div class="input-wrap">
+      <label class="input-label">
+        Coins to Withdraw
+      </label>
+      <input
+        type="number"
+        id="withdraw-amount"
+        class="input-field"
+        placeholder="Min 100 coins"
+        min="100"
+        oninput="onWithdrawInput()" />
+    </div>
+
+    <!-- Available win coins -->
+    <div style="
+      display:flex;
+      justify-content:space-between;
+      padding:8px 4px;
+      font-family:var(--font-ghost);
+      font-size:12px;
+      color:var(--twilight);
+      margin-bottom:16px;">
+      <span>Available win coins:</span>
+      <span id="available-win"
+        style="color:var(--coin-gold);
+          font-weight:700;">
+        🪙 0
+      </span>
+    </div>
+
+    <button class="btn-primary"
+      id="withdraw-btn"
+      onclick="submitWithdraw()"
+      disabled>
+      REQUEST WITHDRAWAL
+    </button>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast-container"
+    class="toast-container">
+  </div>
+
+  <script type="module"
+    src="js/wallet.js">
+  </script>
+
+</body>
+</html>

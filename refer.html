@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width,
+    initial-scale=1.0,
+    maximum-scale=1.0,
+    user-scalable=no" />
+  <meta name="theme-color" content="#020208" />
+  <meta name="apple-mobile-web-app-capable"
+    content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <title>Refer — GAMEZONE</title>
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/refer.css" />
+</head>
+<body>
+
+  <div class="cyber-grid"></div>
+
+  <!-- Page loader -->
+  <div class="page-loader" id="page-loader">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="page-container">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+      <div>
+        <div class="top-bar-title">
+          REFER &amp; EARN
+        </div>
+        <div class="top-bar-subtitle">
+          Invite friends, earn coins
+        </div>
+      </div>
+      <div class="coin-chip"
+        id="coin-chip"
+        onclick="location.href=
+          'wallet.html'">
+        🪙 0
+      </div>
+    </div>
+
+    <!-- Hero banner -->
+    <div class="refer-hero">
+      <span class="refer-hero-icon">
+        🎁
+      </span>
+      <div class="refer-hero-title">
+        EARN FREE COINS
+      </div>
+      <div class="refer-hero-sub">
+        Invite a friend and both of you
+        get bonus coins instantly!<br />
+        Up to 10 referral rewards.
+      </div>
+    </div>
+
+    <!-- Referral code card -->
+    <div class="refer-code-card">
+      <div class="refer-code-label">
+        YOUR REFERRAL CODE
+      </div>
+      <span class="refer-code-value"
+        id="referral-code">
+        ——————
+      </span>
+      <div class="refer-actions">
+        <button
+          class="refer-action-btn
+            refer-copy-btn"
+          onclick="copyReferralCode()">
+          📋 COPY
+        </button>
+        <button
+          class="refer-action-btn
+            refer-share-btn"
+          onclick="shareReferralCode()">
+          📤 SHARE
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="refer-stats">
+      <div class="refer-stat-card
+        glass-card">
+        <div class="refer-stat-icon">
+          👥
+        </div>
+        <div class="refer-stat-value"
+          id="total-referred">
+          0
+        </div>
+        <div class="refer-stat-label">
+          REFERRED
+        </div>
+      </div>
+      <div class="refer-stat-card
+        glass-card">
+        <div class="refer-stat-icon">
+          🪙
+        </div>
+        <div class="refer-stat-value"
+          id="referral-earned">
+          0
+        </div>
+        <div class="refer-stat-label">
+          COINS EARNED
+        </div>
+      </div>
+    </div>
+
+    <!-- Reward segments -->
+    <div class="reward-segments-card">
+      <div class="reward-segments-title">
+        REWARD PROGRESS
+      </div>
+      <div class="reward-segments"
+        id="reward-segments">
+      </div>
+      <div class="reward-info">
+        Each referral earns you
+        <span id="bonus-per-refer">5</span>
+        bonus coins •
+        Max <span>10</span> rewards
+      </div>
+    </div>
+
+    <!-- Use referral code -->
+    <div class="use-code-card">
+      <div class="use-code-title">
+        🎮 USE A REFERRAL CODE
+      </div>
+      <div class="use-code-input-row">
+        <input
+          type="text"
+          id="use-code-input"
+          class="input-field use-code-input"
+          placeholder="Enter code e.g. FF1A2B3C"
+          maxlength="8"
+          oninput="onUseCodeInput(this)" />
+        <button
+          class="use-code-btn"
+          id="use-code-btn"
+          onclick="applyCode()"
+          disabled>
+          USE
+        </button>
+      </div>
+      <div class="use-code-result"
+        id="use-code-result">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav">
+    <a class="nav-item"
+      data-page="home"
+      href="home.html">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a class="nav-item"
+      data-page="matches"
+      href="matches.html">
+      <span class="nav-icon">⚔️</span>
+      <span class="nav-label">Matches</span>
+    </a>
+    <a class="nav-item"
+      data-page="wallet"
+      href="wallet.html">
+      <span class="nav-icon">💰</span>
+      <span class="nav-label">Wallet</span>
+    </a>
+    <a class="nav-item active"
+      data-page="refer"
+      href="refer.html">
+      <span class="nav-icon">🎁</span>
+      <span class="nav-label">Refer</span>
+    </a>
+    <a class="nav-item"
+      data-page="profile"
+      href="profile.html">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+
+  <!-- Toast -->
+  <div id="toast-container"
+    class="toast-container">
+  </div>
+
+  <script type="module"
+    src="js/refer.js">
+  </script>
+
+</body>
+</html>

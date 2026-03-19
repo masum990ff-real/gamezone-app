@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width,
+    initial-scale=1.0,
+    maximum-scale=1.0,
+    user-scalable=no" />
+  <meta name="theme-color" content="#020208" />
+  <meta name="mobile-web-app-capable"
+    content="yes" />
+  <meta name="apple-mobile-web-app-capable"
+    content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <title>GAMEZONE</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet"
+    href="css/variables.css" />
+  <link rel="stylesheet"
+    href="css/base.css" />
+  <link rel="stylesheet"
+    href="css/animations.css" />
+  <link rel="stylesheet"
+    href="css/components.css" />
+  <link rel="stylesheet"
+    href="css/index.css" />
+</head>
+<body>
+
+  <!-- ── Cyber grid overlay ─────────────────── -->
+  <div class="cyber-grid"></div>
+  <div class="radial-glow"></div>
+
+  <!-- ── Particle canvas ────────────────────── -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ── Countdown page ─────────────────────── -->
+  <div class="countdown-page" id="countdown-page">
+
+    <!-- Logo top -->
+    <div class="countdown-logo">⚔️ GAMEZONE</div>
+
+    <!-- Rings -->
+    <div class="rings-container"
+      id="rings-container">
+
+      <!-- Outer ring -->
+      <div class="ring-outer"
+        style="transform:translate(-50%,-50%)">
+      </div>
+
+      <!-- Middle ring -->
+      <div class="ring-middle"
+        style="transform:translate(-50%,-50%)">
+      </div>
+
+      <!-- Inner circle -->
+      <div class="ring-inner" id="ring-inner">
+        <!-- Count number -->
+        <div class="count-number"
+          id="count-number">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Get ready text -->
+    <div class="get-ready-text"
+      id="get-ready-text">
+      GET READY!
+    </div>
+
+    <!-- Choice cards (shown after countdown) -->
+    <div class="choice-container"
+      id="choice-container">
+
+      <!-- New player -->
+      <div class="choice-card choice-card-new"
+        id="btn-new-player"
+        onclick="location.href='signup.html'">
+        <div class="choice-card-title">
+          ⚔️ NEW PLAYER
+        </div>
+        <div class="choice-card-sub">
+          First time? Join the battle
+        </div>
+      </div>
+
+      <!-- Returning player -->
+      <div class="choice-card
+        choice-card-return"
+        id="btn-returning"
+        onclick="location.href='login.html'">
+        <div class="choice-card-title">
+          🎮 RETURNING PLAYER
+        </div>
+        <div class="choice-card-sub">
+          Welcome back, warrior
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ── Toast container ────────────────────── -->
+  <div id="toast-container"
+    class="toast-container">
+  </div>
+
+  <!-- ── JS ─────────────────────────────────── -->
+  <script type="module"
+    src="js/index.js">
+  </script>
+
+</body>
+</html>
