@@ -1,1 +1,187 @@
+/* ═══════════════════════════════════════════════
+   GAMEZONE — AUTH PAGES (Login + Signup)
+═══════════════════════════════════════════════ */
 
+/* ── Auth page layout ───────────────────────── */
+.auth-page {
+  min-height: 100dvh;
+  background: var(--bg-void);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px
+    calc(40px + env(safe-area-inset-bottom));
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ── Auth header ────────────────────────────── */
+.auth-header {
+  width: 100%;
+  max-width: var(--max-width);
+  padding-top: calc(
+    env(safe-area-inset-top) + 40px);
+  padding-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.auth-icon {
+  font-size: 48px;
+  filter: drop-shadow(0 0 20px var(--neon-cyan));
+  animation: pulseScale 2s ease infinite;
+}
+
+.auth-title {
+  font-family: var(--font-ghost);
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  background: var(--primary-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.auth-subtitle {
+  font-family: var(--font-ghost);
+  font-size: 13px;
+  color: var(--stardust);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* ── Auth card ──────────────────────────────── */
+.auth-card {
+  width: 100%;
+  max-width: var(--max-width);
+  background: var(--bg-cosmos);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-xl);
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+  animation: slideUp 0.5s
+    cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ── Password strength ──────────────────────── */
+.password-strength {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: -4px;
+}
+
+.strength-bars {
+  display: flex;
+  gap: 4px;
+}
+.strength-bar {
+  flex: 1;
+  height: 3px;
+  border-radius: var(--r-full);
+  background: rgba(255,255,255,0.08);
+  transition: background 0.3s ease;
+}
+.strength-bar.weak   { background: var(--alert-red); }
+.strength-bar.fair   { background: var(--warn-amber); }
+.strength-bar.strong { background: var(--win-green); }
+
+.strength-label {
+  font-family: var(--font-ghost);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--twilight);
+  transition: color 0.3s ease;
+}
+.strength-label.weak   { color: var(--alert-red); }
+.strength-label.fair   { color: var(--warn-amber); }
+.strength-label.strong { color: var(--win-green); }
+
+/* ── Password match indicator ───────────────── */
+.match-indicator {
+  font-family: var(--font-ghost);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 4px 0;
+  transition: var(--t-fast);
+}
+.match-indicator.match   { color: var(--win-green); }
+.match-indicator.no-match { color: var(--alert-red); }
+
+/* ── Auth switch link ───────────────────────── */
+.auth-switch {
+  text-align: center;
+  font-family: var(--font-ghost);
+  font-size: 13px;
+  color: var(--twilight);
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+}
+.auth-switch a {
+  color: var(--neon-cyan);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ── Forgot password ────────────────────────── */
+.forgot-link {
+  text-align: right;
+  font-family: var(--font-ghost);
+  font-size: 12px;
+  color: var(--electric-violet);
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-top: -8px;
+  transition: var(--t-fast);
+}
+.forgot-link:active {
+  opacity: 0.7;
+}
+
+/* ── Error message ──────────────────────────── */
+.field-error {
+  font-family: var(--font-ghost);
+  font-size: 11px;
+  color: var(--alert-red);
+  letter-spacing: 0.5px;
+  padding-left: 4px;
+  margin-top: -8px;
+  animation: slideDown 0.2s ease;
+}
+
+/* ── Back to home ───────────────────────────── */
+.auth-back {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + 16px);
+  left: 20px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--neon-cyan);
+  font-family: var(--font-ghost);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--t-fast);
+}
+.auth-back:active { opacity: 0.7; }
