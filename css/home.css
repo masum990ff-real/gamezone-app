@@ -1,0 +1,242 @@
+/* ═══════════════════════════════════════════════
+   GAMEZONE — HOME PAGE
+═══════════════════════════════════════════════ */
+
+/* ── Top bar home ───────────────────────────── */
+.home-top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8,8,32,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(106,13,173,0.25);
+  padding: 10px var(--lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.home-brand-name {
+  font-family: var(--font-ghost);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  background: var(--primary-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: neonFlicker 6s ease infinite;
+}
+.home-brand-greeting {
+  font-family: var(--font-ghost);
+  font-size: 11px;
+  color: var(--stardust);
+  letter-spacing: 1.5px;
+}
+
+/* ════════════════════════════════════════════
+   BANNER SLIDER
+════════════════════════════════════════════ */
+
+.banner-section {
+  padding: var(--lg) var(--lg) 0;
+}
+
+.banner-slider-wrap {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  position: relative;
+  height: 210px;
+  background: var(--bg-cosmos);
+}
+
+.banner-slider {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 0;
+}
+.banner-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.banner-slide {
+  min-width: 100%;
+  height: 100%;
+  scroll-snap-align: start;
+  position: relative;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-nebula);
+}
+
+/* Dark scrim */
+.banner-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    rgba(2,2,8,0.5) 60%,
+    rgba(2,2,8,0.88) 100%
+  );
+}
+
+.banner-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  z-index: 1;
+}
+.banner-title {
+  font-family: var(--font-ghost);
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--luminance);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.banner-subtitle {
+  font-family: var(--font-ghost);
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 1px;
+}
+
+/* Dot indicators */
+.banner-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+}
+.banner-dot {
+  height: 6px;
+  border-radius: var(--r-full);
+  background: rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.banner-dot.active {
+  width: 24px;
+  background: var(--neon-cyan);
+  box-shadow: var(--glow-cyan);
+}
+.banner-dot:not(.active) {
+  width: 6px;
+}
+
+/* ════════════════════════════════════════════
+   CATEGORIES
+════════════════════════════════════════════ */
+
+.categories-section {
+  padding: var(--xl) var(--lg) 0;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.category-card {
+  height: 160px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-nebula);
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+  transition: var(--t-spring);
+}
+.category-card:active {
+  transform: scale(0.96);
+}
+
+/* Gradient overlay */
+.category-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    rgba(2,2,8,0.7) 70%,
+    rgba(2,2,8,0.92) 100%
+  );
+  z-index: 1;
+}
+
+/* Animated border */
+.category-card::after {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: var(--r-lg);
+  background: conic-gradient(
+    from var(--border-angle, 0deg),
+    var(--cyber-purple),
+    var(--neon-cyan),
+    var(--magenta-pink),
+    var(--cyber-purple)
+  );
+  z-index: -1;
+  animation: borderSpin 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.category-card:hover::after,
+.category-card:active::after {
+  opacity: 1;
+}
+
+.category-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 12px;
+  font-family: var(--font-ghost);
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--luminance);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  z-index: 2;
+  line-height: 1.2;
+}
+
+/* Skeleton loader for categories */
+.category-skeleton {
+  height: 160px;
+  border-radius: var(--r-lg);
+  background: linear-gradient(
+    90deg,
+    var(--bg-nebula) 25%,
+    var(--bg-cosmos) 50%,
+    var(--bg-nebula) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}

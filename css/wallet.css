@@ -1,0 +1,442 @@
+/* ═══════════════════════════════════════════════
+   GAMEZONE — WALLET PAGE
+═══════════════════════════════════════════════ */
+
+/* ── Total balance card ─────────────────────── */
+.total-balance-card {
+  margin: var(--lg);
+  padding: 28px 20px;
+  border-radius: var(--r-xl);
+  background: var(--bg-cosmos);
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Subtle coin watermark */
+.total-balance-card::before {
+  content: '🪙';
+  position: absolute;
+  font-size: 120px;
+  opacity: 0.04;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+.balance-label {
+  font-family: var(--font-ghost);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--twilight);
+  margin-bottom: 8px;
+}
+
+.balance-amount {
+  font-family: var(--font-ghost);
+  font-size: 44px;
+  font-weight: 900;
+  background: var(--coin-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 20px rgba(255,215,0,0.3));
+  line-height: 1;
+  margin-bottom: 4px;
+  animation: countRoll 0.4s ease both;
+}
+
+.balance-amount-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+/* Float plus animation element */
+.float-plus {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-ghost);
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--win-green);
+  pointer-events: none;
+  animation: floatPlus 1s ease forwards;
+  white-space: nowrap;
+}
+
+/* ── 3 balances card ────────────────────────── */
+.balances-card {
+  margin: 0 var(--lg) var(--lg);
+  background: var(--bg-cosmos);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.balances-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.balance-col {
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  position: relative;
+}
+.balance-col:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+.balance-col-icon {
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+.balance-col-label {
+  font-family: var(--font-ghost);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.balance-col-deposit .balance-col-label {
+  color: var(--neon-cyan);
+}
+.balance-col-win .balance-col-label {
+  color: var(--coin-gold);
+}
+.balance-col-bonus .balance-col-label {
+  color: var(--electric-violet);
+}
+
+.balance-col-amount {
+  font-family: var(--font-ghost);
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--luminance);
+  margin-bottom: 6px;
+}
+
+.balance-col-btn {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--r-full);
+  font-family: var(--font-ghost);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--t-spring);
+  border: none;
+}
+.balance-col-btn:active {
+  transform: scale(0.93);
+}
+.balance-col-btn.deposit-btn {
+  background: rgba(0,229,255,0.12);
+  border: 1px solid rgba(0,229,255,0.35);
+  color: var(--neon-cyan);
+}
+.balance-col-btn.withdraw-btn {
+  background: rgba(255,215,0,0.1);
+  border: 1px solid rgba(255,215,0,0.35);
+  color: var(--coin-gold);
+}
+
+/* ── Deposit sheet steps ─────────────────────── */
+.deposit-step {
+  display: none;
+}
+.deposit-step.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Amount grid */
+.amount-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.amount-card {
+  padding: 16px 10px;
+  background: var(--bg-nebula);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-md);
+  text-align: center;
+  cursor: pointer;
+  transition: var(--t-spring);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.amount-card:active {
+  transform: scale(0.95);
+}
+.amount-card.selected {
+  background: rgba(0,229,255,0.08);
+  border: 1.5px solid transparent;
+  background-image:
+    linear-gradient(
+      rgba(8,8,32,0.9),
+      rgba(8,8,32,0.9)
+    ),
+    conic-gradient(
+      from var(--border-angle, 0deg),
+      var(--cyber-purple),
+      var(--neon-cyan),
+      var(--magenta-pink),
+      var(--cyber-purple)
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  animation: borderSpin 3s linear infinite;
+}
+
+.amount-coin {
+  font-family: var(--font-ghost);
+  font-size: 24px;
+  font-weight: 900;
+  background: var(--coin-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.amount-rupee {
+  font-family: var(--font-ghost);
+  font-size: 11px;
+  color: var(--twilight);
+  letter-spacing: 1px;
+}
+
+/* Payment app chips */
+.app-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.app-chip {
+  padding: 8px 16px;
+  background: var(--bg-nebula);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-full);
+  font-family: var(--font-ghost);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--stardust);
+  cursor: pointer;
+  transition: var(--t-spring);
+  letter-spacing: 0.5px;
+}
+.app-chip:active {
+  transform: scale(0.95);
+}
+.app-chip.selected {
+  background: rgba(0,229,255,0.08);
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+}
+
+/* QR code */
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.qr-image-wrap {
+  width: 200px;
+  height: 200px;
+  background: white;
+  border-radius: var(--r-md);
+  padding: 8px;
+  border: 2px solid var(--neon-cyan);
+  box-shadow: var(--glow-cyan);
+  overflow: hidden;
+}
+.qr-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.qr-app-name {
+  font-family: var(--font-ghost);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--luminance);
+  letter-spacing: 2px;
+}
+.qr-amount {
+  font-family: var(--font-ghost);
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--coin-gold);
+  text-shadow: var(--glow-gold);
+  letter-spacing: 2px;
+}
+.qr-warning {
+  font-family: var(--font-ghost);
+  font-size: 11px;
+  color: var(--alert-red);
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* Countdown timer */
+.deposit-timer {
+  font-family: var(--font-ghost);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-align: center;
+  padding: 10px;
+  border-radius: var(--r-sm);
+  transition: color 0.3s ease;
+}
+.deposit-timer.normal {
+  color: var(--stardust);
+}
+.deposit-timer.warning {
+  color: var(--warn-amber);
+  text-shadow: 0 0 10px rgba(255,171,0,0.4);
+}
+.deposit-timer.danger {
+  color: var(--alert-red);
+  text-shadow: var(--glow-red);
+  animation: pulse 0.8s ease infinite;
+}
+
+/* UTR input */
+.utr-input {
+  letter-spacing: 4px;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Loading pulse */
+.loading-pulse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+}
+.loading-pulse-text {
+  font-family: var(--font-ghost);
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--stardust);
+  animation: pulse 1.5s ease infinite;
+}
+
+/* ── Transaction history ─────────────────────── */
+.tx-section {
+  padding: 0 var(--lg) var(--lg);
+}
+
+.tx-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tx-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  animation: fadeIn 0.3s ease both;
+}
+.tx-row:last-child {
+  border-bottom: none;
+}
+
+.tx-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.tx-icon-credit {
+  background: rgba(0,230,118,0.12);
+  border: 1px solid rgba(0,230,118,0.2);
+}
+.tx-icon-debit {
+  background: rgba(255,23,68,0.1);
+  border: 1px solid rgba(255,23,68,0.2);
+}
+
+.tx-info {
+  flex: 1;
+  min-width: 0;
+}
+.tx-desc {
+  font-family: var(--font-ghost);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--luminance);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+.tx-date {
+  font-family: var(--font-ghost);
+  font-size: 11px;
+  color: var(--twilight);
+  letter-spacing: 0.5px;
+}
+
+.tx-amount {
+  font-family: var(--font-ghost);
+  font-size: 15px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+.tx-amount-credit { color: var(--win-green); }
+.tx-amount-debit  { color: var(--alert-red); }
+
+/* Coin add animation container */
+.coin-anim-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8000;
+}
+.coin-particle {
+  position: absolute;
+  font-size: 24px;
+  pointer-events: none;
+  animation: coinFly 0.8s ease-out forwards;
+}

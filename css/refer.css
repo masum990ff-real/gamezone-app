@@ -1,0 +1,317 @@
+/* ═══════════════════════════════════════════════
+   GAMEZONE — REFER PAGE
+═══════════════════════════════════════════════ */
+
+/* ── Hero banner ────────────────────────────── */
+.refer-hero {
+  margin: var(--lg);
+  padding: 28px 20px;
+  border-radius: var(--r-xl);
+  background: linear-gradient(
+    135deg,
+    rgba(106,13,173,0.4),
+    rgba(147,51,234,0.3),
+    rgba(0,229,255,0.15)
+  );
+  border: 1.5px solid rgba(0,229,255,0.2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow orb behind hero */
+.refer-hero::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(0,229,255,0.15),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.refer-hero-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  filter: drop-shadow(
+    0 0 20px rgba(0,229,255,0.5));
+  animation: pulseScale 2s ease infinite;
+  display: block;
+}
+
+.refer-hero-title {
+  font-family: var(--font-ghost);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: var(--secondary-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.refer-hero-sub {
+  font-family: var(--font-ghost);
+  font-size: 13px;
+  color: var(--stardust);
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+
+/* ── Referral code card ──────────────────────── */
+.refer-code-card {
+  margin: 0 var(--lg) var(--lg);
+  background: var(--bg-cosmos);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  text-align: center;
+}
+
+.refer-code-label {
+  font-family: var(--font-ghost);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--twilight);
+  margin-bottom: 12px;
+}
+
+.refer-code-value {
+  font-family: var(--font-ghost);
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 8px;
+  background: var(--coin-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(
+    0 0 15px rgba(255,215,0,0.3));
+  margin-bottom: 20px;
+  display: block;
+  animation: neonFlicker 8s ease infinite;
+}
+
+.refer-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.refer-action-btn {
+  height: 48px;
+  border-radius: var(--r-md);
+  font-family: var(--font-ghost);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--t-spring);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: none;
+}
+.refer-action-btn:active {
+  transform: scale(0.95);
+}
+.refer-copy-btn {
+  background: rgba(0,229,255,0.1);
+  border: 1.5px solid rgba(0,229,255,0.35) !important;
+  color: var(--neon-cyan);
+}
+.refer-share-btn {
+  background: var(--secondary-grad);
+  color: var(--luminance);
+  box-shadow: 0 0 20px rgba(147,51,234,0.3);
+}
+
+/* ── Stats cards ────────────────────────────── */
+.refer-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 0 var(--lg) var(--lg);
+}
+
+.refer-stat-card {
+  background: var(--bg-cosmos);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-lg);
+  padding: 18px 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.refer-stat-icon {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+.refer-stat-value {
+  font-family: var(--font-ghost);
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--luminance);
+}
+.refer-stat-label {
+  font-family: var(--font-ghost);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--twilight);
+}
+
+/* ── Reward segments ────────────────────────── */
+.reward-segments-card {
+  margin: 0 var(--lg) var(--lg);
+  background: var(--bg-cosmos);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-lg);
+  padding: 20px;
+}
+
+.reward-segments-title {
+  font-family: var(--font-ghost);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--twilight);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.reward-segments {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.reward-segment {
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: var(--t-md);
+  position: relative;
+}
+.reward-segment.filled {
+  background: rgba(0,230,118,0.15);
+  border-color: rgba(0,230,118,0.35);
+}
+.reward-segment.filled::after {
+  content: '✓';
+  font-size: 12px;
+  color: var(--win-green);
+}
+.reward-segment:not(.filled)::after {
+  content: attr(data-num);
+  font-family: var(--font-ghost);
+  font-size: 10px;
+  color: var(--twilight);
+}
+
+.reward-info {
+  font-family: var(--font-ghost);
+  font-size: 12px;
+  color: var(--twilight);
+  text-align: center;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+.reward-info span {
+  color: var(--win-green);
+  font-weight: 700;
+}
+
+/* ── Use code section ───────────────────────── */
+.use-code-card {
+  margin: 0 var(--lg) var(--lg);
+  background: var(--bg-cosmos);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-lg);
+  padding: 20px;
+}
+
+.use-code-title {
+  font-family: var(--font-ghost);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--luminance);
+  margin-bottom: 14px;
+}
+
+.use-code-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.use-code-input {
+  flex: 1;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700 !important;
+}
+
+.use-code-btn {
+  height: 54px;
+  padding: 0 20px;
+  width: auto;
+  border-radius: var(--r-md);
+  background: var(--primary-grad);
+  border: none;
+  color: var(--luminance);
+  font-family: var(--font-ghost);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--t-spring);
+  white-space: nowrap;
+  box-shadow: var(--glow-cyan);
+}
+.use-code-btn:active {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+.use-code-btn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.use-code-result {
+  margin-top: 10px;
+  font-family: var(--font-ghost);
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 4px 0;
+  min-height: 20px;
+  transition: var(--t-fast);
+}
+.use-code-result.success {
+  color: var(--win-green);
+}
+.use-code-result.error {
+  color: var(--alert-red);
+}

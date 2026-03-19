@@ -1,0 +1,226 @@
+/* ═══════════════════════════════════════════════
+   GAMEZONE — INDEX PAGE (Countdown + Choice)
+═══════════════════════════════════════════════ */
+
+/* ── Full screen container ──────────────────── */
+.countdown-page {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-void);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Particle canvas ────────────────────────── */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Rings container ────────────────────────── */
+.rings-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+/* ── Outer ring ─────────────────────────────── */
+.ring-outer {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 3px dashed rgba(106,13,173,0.5);
+  top: 50%;
+  left: 50%;
+  box-shadow: var(--glow-purple);
+  animation: outerSpin 8s linear infinite;
+}
+
+/* ── Middle ring ────────────────────────────── */
+.ring-middle {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,229,255,0.4);
+  top: 50%;
+  left: 50%;
+  box-shadow: var(--glow-cyan);
+  animation: ringPulse 1.4s ease-in-out infinite;
+}
+
+/* ── Inner circle ───────────────────────────── */
+.ring-inner {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(106,13,173,0.35),
+    rgba(0,229,255,0.12)
+  );
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0,229,255,0.2);
+}
+.ring-inner.burst {
+  animation: glowBurst 0.6s ease-out forwards;
+}
+
+/* ── Count number ───────────────────────────── */
+.count-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-ghost);
+  font-size: 96px;
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+  white-space: nowrap;
+  color: var(--luminance);
+  text-shadow: var(--glow-cyan);
+}
+.count-number.animating {
+  animation: countPop 0.85s
+    cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ── GO text ────────────────────────────────── */
+.count-go {
+  font-family: var(--font-ghost);
+  font-size: 72px;
+  font-weight: 900;
+  background: var(--primary-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(0,229,255,0.6));
+}
+
+/* ── Get ready text ─────────────────────────── */
+.get-ready-text {
+  position: absolute;
+  top: calc(40% + 170px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-ghost);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--stardust);
+  white-space: nowrap;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.get-ready-text.show {
+  opacity: 1;
+}
+
+/* ── Choice cards container ─────────────────── */
+.choice-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 20px
+    calc(40px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 2;
+  transform: translateY(100%);
+  transition: transform 0.55s
+    cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.choice-container.show {
+  transform: translateY(0);
+}
+
+/* ── Choice card ────────────────────────────── */
+.choice-card {
+  border-radius: var(--r-lg);
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: var(--t-spring);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.choice-card:active {
+  transform: scale(0.97);
+}
+.choice-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.08),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.choice-card-new {
+  background: var(--primary-grad);
+  box-shadow: var(--glow-cyan);
+}
+.choice-card-return {
+  background: var(--bg-cosmos);
+  border: 1.5px solid rgba(0,229,255,0.35);
+  box-shadow: 0 0 20px rgba(0,229,255,0.1);
+}
+
+.choice-card-title {
+  font-family: var(--font-ghost);
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--luminance);
+}
+.choice-card-sub {
+  font-family: var(--font-ghost);
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.5px;
+}
+
+/* ── GAMEZONE logo on countdown ─────────────── */
+.countdown-logo {
+  position: absolute;
+  top: env(safe-area-inset-top, 20px);
+  top: calc(env(safe-area-inset-top) + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-ghost);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  background: var(--primary-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  z-index: 3;
+  white-space: nowrap;
+}

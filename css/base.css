@@ -1,0 +1,206 @@
+/* ═══════════════════════════════════════════════
+   GAMEZONE — BASE STYLES
+   Reset + body + global elements
+═══════════════════════════════════════════════ */
+
+/* ── Reset ─────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* ── HTML + Body ───────────────────────────── */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-ghost);
+  background: var(--bg-void);
+  color: var(--luminance);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Selection ─────────────────────────────── */
+::selection {
+  background: rgba(0, 229, 255, 0.25);
+  color: var(--luminance);
+}
+
+/* ── Scrollbar ─────────────────────────────── */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cyber-purple);
+  border-radius: var(--r-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+}
+
+/* ── Links ─────────────────────────────────── */
+a {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  transition: var(--t-fast);
+}
+a:hover {
+  opacity: 0.85;
+}
+
+/* ── Images ────────────────────────────────── */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ── Inputs global reset ───────────────────── */
+input, textarea, select, button {
+  font-family: var(--font-ghost);
+  outline: none;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+}
+
+/* ── No select on UI elements ──────────────── */
+button, .nav-item, .tab-item,
+.match-card, .category-card {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Cyberpunk grid overlay ─────────────────── */
+.cyber-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(
+      rgba(106,13,173,0.04) 1px,
+      transparent 1px),
+    linear-gradient(
+      90deg,
+      rgba(0,229,255,0.02) 1px,
+      transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── Radial glow background ─────────────────── */
+.radial-glow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(106,13,173,0.12) 0%,
+    rgba(0,229,255,0.05) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Content above bg layers ───────────────── */
+.page-container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-bottom: calc(
+    var(--nav-height) + 16px +
+    env(safe-area-inset-bottom));
+  overflow-x: hidden;
+}
+
+/* ── Safe area support ──────────────────────── */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ── Utility classes ────────────────────────── */
+.hidden   { display: none !important; }
+.flex     { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gap-sm { gap: var(--sm); }
+.gap-md { gap: var(--md); }
+.gap-lg { gap: var(--lg); }
+.w-full { width: 100%; }
+.text-center { text-align: center; }
+
+/* ── Loading spinner ────────────────────────── */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0,229,255,0.15);
+  border-top-color: var(--neon-cyan);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ── Full page loader ───────────────────────── */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-void);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+.page-loader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Divider ────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(106,13,173,0.4),
+    rgba(0,229,255,0.2),
+    rgba(106,13,173,0.4),
+    transparent
+  );
+  margin: var(--xl) 0;
+}
+
+/* ── Section padding ────────────────────────── */
+.section {
+  padding: var(--xl) var(--lg);
+}
+.section + .section {
+  padding-top: 0;
+}

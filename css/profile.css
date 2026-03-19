@@ -1,0 +1,366 @@
+/* ═══════════════════════════════════════════════
+   GAMEZONE — PROFILE PAGE
+═══════════════════════════════════════════════ */
+
+/* ── Profile header ─────────────────────────── */
+.profile-header {
+  padding: var(--xl) var(--lg) var(--lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+/* ── Avatar ─────────────────────────────────── */
+.avatar-wrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+}
+
+.avatar-circle {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--cyber-purple),
+    var(--electric-violet)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ghost);
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--luminance);
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  box-shadow:
+    0 0 0 3px var(--bg-void),
+    0 0 0 5px rgba(106,13,173,0.5),
+    var(--glow-purple);
+}
+
+/* Rotating dashed border */
+.avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px dashed rgba(0,229,255,0.4);
+  animation: spin 8s linear infinite;
+}
+
+/* Pulsing glow ring */
+.avatar-glow {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,229,255,0.15);
+  animation: ringPulse 2s ease infinite;
+}
+
+.profile-name {
+  font-family: var(--font-ghost);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--luminance);
+  letter-spacing: 2px;
+}
+
+.profile-email {
+  font-family: var(--font-ghost);
+  font-size: 12px;
+  color: var(--twilight);
+  letter-spacing: 1px;
+}
+
+.profile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  background: rgba(0,229,255,0.08);
+  border: 1px solid rgba(0,229,255,0.25);
+  border-radius: var(--r-full);
+  font-family: var(--font-ghost);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+}
+
+/* ── Stats card ─────────────────────────────── */
+.profile-stats-card {
+  margin: 0 var(--lg) var(--lg);
+  background: var(--bg-cosmos);
+  border: 1.5px solid transparent;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background-clip: padding-box;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.stat-col {
+  padding: 18px 8px;
+  text-align: center;
+  position: relative;
+}
+.stat-col:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+.stat-icon {
+  font-size: 18px;
+  margin-bottom: 6px;
+  display: block;
+}
+.stat-value {
+  font-family: var(--font-ghost);
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--luminance);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-family: var(--font-ghost);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--twilight);
+}
+
+/* ── Balances card ──────────────────────────── */
+.profile-balances-card {
+  margin: 0 var(--lg) var(--lg);
+  background: var(--bg-cosmos);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.profile-balance-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px var(--lg);
+  border-bottom: 1px solid
+    rgba(255,255,255,0.05);
+  transition: var(--t-fast);
+}
+.profile-balance-row:last-child {
+  border-bottom: none;
+}
+
+.profile-balance-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profile-balance-icon {
+  font-size: 20px;
+}
+.profile-balance-name {
+  font-family: var(--font-ghost);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.profile-balance-name.deposit {
+  color: var(--neon-cyan);
+}
+.profile-balance-name.win {
+  color: var(--coin-gold);
+}
+.profile-balance-name.bonus {
+  color: var(--electric-violet);
+}
+.profile-balance-amount {
+  font-family: var(--font-ghost);
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--luminance);
+}
+
+/* ── Referral code card ──────────────────────── */
+.profile-referral-card {
+  margin: 0 var(--lg) var(--lg);
+  background: var(--bg-cosmos);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-lg);
+  padding: 16px var(--lg);
+}
+
+.profile-referral-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.profile-referral-info {
+  flex: 1;
+}
+.profile-referral-label {
+  font-family: var(--font-ghost);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--twilight);
+  margin-bottom: 4px;
+}
+.profile-referral-code {
+  font-family: var(--font-ghost);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  background: var(--coin-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.profile-referral-btns {
+  display: flex;
+  gap: 8px;
+}
+.profile-ref-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  border: 1.5px solid rgba(0,229,255,0.3);
+  background: rgba(0,229,255,0.08);
+  color: var(--neon-cyan);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--t-spring);
+}
+.profile-ref-btn:active {
+  transform: scale(0.9);
+}
+
+/* ── Action rows ────────────────────────────── */
+.profile-actions-card {
+  margin: 0 var(--lg) var(--lg);
+  background: var(--bg-cosmos);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 var(--lg);
+  height: 60px;
+  cursor: pointer;
+  transition: var(--t-fast);
+  border-bottom: 1px solid
+    rgba(255,255,255,0.04);
+  text-decoration: none;
+}
+.action-row:last-child {
+  border-bottom: none;
+}
+.action-row:active {
+  background: rgba(255,255,255,0.03);
+  transform: scale(0.98);
+}
+
+.action-row-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.action-icon-support {
+  background: rgba(0,229,255,0.1);
+  border: 1px solid rgba(0,229,255,0.2);
+}
+.action-icon-privacy {
+  background: rgba(147,51,234,0.1);
+  border: 1px solid rgba(147,51,234,0.2);
+}
+.action-icon-fairplay {
+  background: rgba(255,215,0,0.08);
+  border: 1px solid rgba(255,215,0,0.2);
+}
+.action-icon-whatsapp {
+  background: rgba(0,230,118,0.1);
+  border: 1px solid rgba(0,230,118,0.2);
+}
+
+.action-row-label {
+  flex: 1;
+  font-family: var(--font-ghost);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--luminance);
+}
+
+.action-row-chevron {
+  color: var(--twilight);
+  font-size: 18px;
+  transition: var(--t-fast);
+}
+.action-row:active .action-row-chevron {
+  transform: translateX(3px);
+  color: var(--neon-cyan);
+}
+
+/* ── Logout row ─────────────────────────────── */
+.logout-row {
+  margin: 0 var(--lg) var(--lg);
+  border-radius: var(--r-lg);
+  border: 1.5px solid rgba(255,23,68,0.3);
+  background: rgba(255,23,68,0.05);
+  overflow: hidden;
+}
+.logout-row .action-row {
+  border-bottom: none;
+}
+.logout-row .action-row-label {
+  color: var(--alert-red);
+}
+.logout-row .action-row-chevron {
+  color: rgba(255,23,68,0.4);
+}
+.logout-row .action-row:active {
+  background: rgba(255,23,68,0.08);
+}
+
+/* ── Policy modal ───────────────────────────── */
+.policy-content {
+  font-family: var(--font-ghost);
+  font-size: 13px;
+  color: var(--stardust);
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  white-space: pre-wrap;
+  max-height: 60dvh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
